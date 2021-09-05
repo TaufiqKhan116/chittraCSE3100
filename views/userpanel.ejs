@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Baby care</title>
+        <%- include('bootstrap') -%>
+    </head>
+    <body>
+        <%- include('navbar') -%>
+        <%- include('registermodal') -%>
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#registerModal">Register A Device</button>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">Mac Addresss</th>
+                  <th scope="col">Oscillating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(list != null) { %>
+                    <% for(var i=0; i < list.length; i++) { %>
+                        <tr>
+                            <td><%= list[i].mac %></td>
+                            <td id="<%= list[i].mac %>"><%= list[i].isOscillating %></td>
+                            <td>
+                                <button id="btn<%= list[i].mac %>" class="btn btn-outline-info" onclick="oscHandlr('<%= list[i].mac %>')">
+                                    <% if(list[i].isOscillating) { %>
+                                        Stop
+                                    <% } else {%>
+                                        Start
+                                    <% } %>
+                                </button>
+                            </td>
+                        </tr>
+                    <% } %>
+                <% } %>
+            </tbody>
+        </table>
+        <script>
+            function oscHandlr(mac) {
+                console.log(mac)
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function() { 
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        document.getElementById(mac).innerHTML = JSON.parse(xmlHttp.responseText)['osc'];
+                        document.getElementById('btn'+mac).innerHTML = JSON.parse(xmlHttp.responseText)['btn'];
+                    }
+                }
+                xmlHttp.open("GET", '/' + mac, true); // true for asynchronous 
+                xmlHttp.send(null);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Baby Care</title>
+        <%- include('bootstrap') -%>
+    </head>
+    <body>
+        <%- include('navbar') -%>
+        <% if (errorMsg != '') { %>
+            <script>alert('<%=errorMsg%>')</script>  
+        <% } %>
+        <%- include('loginmodal') -%>
+        <%- include('signupmodal') -%>
+    </body>
+</html>
