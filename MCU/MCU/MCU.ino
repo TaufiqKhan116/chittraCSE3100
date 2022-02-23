@@ -17,8 +17,8 @@
 /* 3. Define the RTDB URL */
 #define DATABASE_URL "https://chittranodemcuprojectcse3100-default-rtdb.firebaseio.com/" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
 /* 4. Define the user Email and password that alreadey registerd or added in your project */
-#define USER_EMAIL "khantaufiq2017@gmail.com"
-#define USER_PASSWORD "read!inthenameofyourLord"
+#define USER_EMAIL "enterAuthorizedEmail"
+#define USER_PASSWORD "enterAuthorizedPassword"
 
 // Define Firebase Data object
 FirebaseData fbdo;
